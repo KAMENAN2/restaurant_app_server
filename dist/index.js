@@ -17,8 +17,6 @@ mongodb_1.default.connect(uri, function (error, db) {
     if (!error) {
         console.log("success to mongodb connector");
         var dbClient_1 = db.db("test").collection("restaurants");
-        //-------------------------------CRUD Function for Esatic Server side node js project-----------------------------------------------------------
-        /* Requête HTTP GET http://localhost:8080/restaurants */
         app.get("/restaurants", function (req, res) {
             var page = parseInt(req.query.page || 1);
             // idem si present on prend la valeur, sinon 10
@@ -55,17 +53,6 @@ mongodb_1.default.connect(uri, function (error, db) {
                 rep.send(reponse);
             });
         });
-        //------------------------------- End CRUD Function for Esatic Server side node js project-----------------------------------------------------------
     }
-    else {
-        console.log("Failed to mongodb connector");
-        console.log(error);
-    }
-});
-app.get("/", function (req, res) {
-    res.send("Express fonctionne correctement");
-});
-app.listen(8080, function () {
-    console.log("Server Started");
 });
 //# sourceMappingURL=index.js.map

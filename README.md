@@ -4,5 +4,7 @@
 * npm install ou npm i
 2. Démarrer le serveur avec la commande suivante:
 * npm run dev ou npm run start
-3. Test avec le lien: http://localhost:8080/
+3. Test avec le lien: http://localhost:8080D
+
+/
 
