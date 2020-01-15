@@ -40,7 +40,7 @@ MongoClient.connect(uri,(error,db)=>{
 });
 app.get("/",(req,res)=>{
 
-    res.send("Express is ok to work")
+    res.send("Express fonctionne correctement")
 });
 
 
