@@ -3,13 +3,12 @@ import mongoose, {Schema, Types} from "mongoose";
 import MongoClient from "mongodb"
 import bodyParser from "body-parser";
 import ObjectId = mongoose.Types.ObjectId;
-
-
-
+import * as url from "url";
 
 
 
 let app = express();
+const dbName = 'test';
 const uri ="mongodb://localhost:27017";
 app.use(bodyParser.json());
  // let size =10;
@@ -62,6 +61,70 @@ MongoClient.connect(uri,(error,db)=>{
             })
 
         });
+
+
+
+        app.put("/modification_restaurants/:id",(req,rep)=> {
+
+            let id = req.params.id;
+            console.log(id);
+            let reponse;
+            let idObject = {_id:ObjectId(id)}
+            dbClient.replaceOne(idObject, req.body, (error: any, data: any)=>{
+                if(!error){
+                    reponse = {
+                        succes: true,
+                        restaurant : data,
+                        error : null,
+                        msg:"updated successfully"
+                    };
+                } else{
+                    reponse = {
+                        succes: false,
+                        restaurant : null,
+                        error : error,
+                        msg: "update failed"
+
+                    };
+                };
+                rep.send(reponse);
+            })
+
+        });
+
+
+
+
+
+        app.delete("/restaurants/:id",(req,rep)=> {
+
+            let id = req.params.id;
+            console.log(id);
+            let reponse;
+            let idObject = {_id:ObjectId(id)}
+            dbClient.deleteOne(idObject,(error,data)=>{
+                if(!error){
+                    reponse = {
+                        succes: true,
+                        restaurant : data,
+                        error : null,
+                        msg:"Suppression réussie "+ data
+                    };
+                } else{
+                    reponse = {
+                        succes: false,
+                        restaurant : null,
+                        error : error,
+                        msg: "erreur de la suppression"
+
+                    };
+                };
+                rep.send(reponse);
+            })
+
+        });
+
+
 
 
         //------------------------------- End CRUD Function for Esatic Server side node js project-----------------------------------------------------------

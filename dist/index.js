@@ -9,6 +9,7 @@ var mongodb_1 = __importDefault(require("mongodb"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var ObjectId = mongoose_1.default.Types.ObjectId;
 var app = express_1.default();
+var dbName = 'test';
 var uri = "mongodb://localhost:27017";
 app.use(body_parser_1.default.json());
 // let size =10;
@@ -17,6 +18,8 @@ mongodb_1.default.connect(uri, function (error, db) {
     if (!error) {
         console.log("success to mongodb connector");
         var dbClient_1 = db.db("test").collection("restaurants");
+        //-------------------------------CRUD Function for Esatic Server side node js project-----------------------------------------------------------
+        /* Requête HTTP GET http://localhost:8080/restaurants */
         app.get("/restaurants", function (req, res) {
             var page = parseInt(req.query.page || 1);
             // idem si present on prend la valeur, sinon 10
@@ -53,6 +56,69 @@ mongodb_1.default.connect(uri, function (error, db) {
                 rep.send(reponse);
             });
         });
+        app.put("/modification_restaurants/:id", function (req, rep) {
+            var id = req.params.id;
+            console.log(id);
+            var reponse;
+            var idObject = { _id: ObjectId(id) };
+            dbClient_1.replaceOne(idObject, req.body, function (error, data) {
+                if (!error) {
+                    reponse = {
+                        succes: true,
+                        restaurant: data,
+                        error: null,
+                        msg: "updated successfully"
+                    };
+                }
+                else {
+                    reponse = {
+                        succes: false,
+                        restaurant: null,
+                        error: error,
+                        msg: "update failed"
+                    };
+                }
+                ;
+                rep.send(reponse);
+            });
+        });
+        app.delete("/restaurants/:id", function (req, rep) {
+            var id = req.params.id;
+            console.log(id);
+            var reponse;
+            var idObject = { _id: ObjectId(id) };
+            dbClient_1.deleteOne(idObject, function (error, data) {
+                if (!error) {
+                    reponse = {
+                        succes: true,
+                        restaurant: data,
+                        error: null,
+                        msg: "Suppression réussie " + data
+                    };
+                }
+                else {
+                    reponse = {
+                        succes: false,
+                        restaurant: null,
+                        error: error,
+                        msg: "erreur de la suppression"
+                    };
+                }
+                ;
+                rep.send(reponse);
+            });
+        });
+        //------------------------------- End CRUD Function for Esatic Server side node js project-----------------------------------------------------------
     }
+    else {
+        console.log("Failed to mongodb connector");
+        console.log(error);
+    }
+});
+app.get("/", function (req, res) {
+    res.send("Express fonctionne correctement");
+});
+app.listen(8080, function () {
+    console.log("Server Started");
 });
 //# sourceMappingURL=index.js.map
