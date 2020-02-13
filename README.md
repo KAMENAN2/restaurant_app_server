@@ -9,6 +9,7 @@
 3. Test avec le lien: http://localhost:8080/
 
 <h2>Requête pour obtenir les resources REST</h2>
+
 1. Requête HTTP GET http://localhost:8080/find-all-rest
 2. Requête HTTP GET http://localhost:8080/find-paginate-resto?size=10&page=2
 3. Requête HTTP GET http://localhost:8080/find-resto-by-name?size=10&page=1&name=Morri
