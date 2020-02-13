@@ -41,10 +41,12 @@ app.use(cors_1.default(corsOptions));
 app.options('*', cors_1.default());
 // let size =10;
 // let page = 1;
-//--------------------------- mongoose --------------------------------------
+//------------------------------- CRUD Function for Esatic Server side node js project-----------------------------------------------------------
+//---------------------------------------------------- mongoose --------------------------------------
 var uri = "mongodb://localhost:27017/test";
 mongoose_1.default.connect(uri, function (err) {
     if (err) {
+        console.log("Failed to mongodb connector with mongoose");
         console.log(err);
     }
     else {
@@ -91,7 +93,6 @@ mongodb_1.default.connect(uri, function (error, db) {
     if (!error) {
         console.log("success to mongodb connector");
         var dbClient_1 = db.db("test").collection("restaurants");
-        //-------------------------------CRUD Function for Esatic Server side node js project-----------------------------------------------------------
         //Requête HTTP GET http://localhost:8080/restaurants
         app.get("/restaurants", function (req, res) {
             var page = parseInt(req.query.page || 1);
@@ -219,11 +220,11 @@ mongodb_1.default.connect(uri, function (error, db) {
                 rep.send(reponse);
             });
         });
-        //--------------------------- MongoClient --------------------------------------
+        //------------------------------------------------- MongoClient --------------------------------------------------
         //------------------------------- End CRUD Function for Esatic Server side node js project-----------------------------------------------------------
     }
     else {
-        console.log("Failed to mongodb connector");
+        console.log("Failed to mongodb connector with MongoClient");
         console.log(error);
     }
 });
