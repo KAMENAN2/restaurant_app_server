@@ -1,12 +1,14 @@
-#Readme for project restaurant SERVER
-##Commande pour initialiser le projet
+<h1>Readme for project restaurant SERVER</h1>
+<h2>Commande pour initialiser le projet</h2>
+
 1. Télécharger les dépendances du projet en exécutant la commande suivante:
 * npm install ou npm i
 2. Démarrer le serveur avec la commande suivante:
 * npm run dev ou npm run start
 * port = 8080
 3. Test avec le lien: http://localhost:8080/
-##Requête pour obtenir les resources REST
+
+<h2>Requête pour obtenir les resources REST</h2>
 1. Requête HTTP GET http://localhost:8080/find-all-rest
 2. Requête HTTP GET http://localhost:8080/find-paginate-resto?size=10&page=2
 3. Requête HTTP GET http://localhost:8080/find-resto-by-name?size=10&page=1&name=Morri
