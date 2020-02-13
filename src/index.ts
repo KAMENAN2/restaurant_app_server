@@ -56,7 +56,7 @@ app.get("/find-all-resto",(req:Request,resp:Response)=>{
         else{ resp.send(books); }
     })
 });
-//Requête HTTP GET http://localhost:8080/find-all-resto?size=10&page=2
+//Requête HTTP GET http://localhost:8080/find-paginate-resto?size=10&page=2
 app.get("/find-paginate-resto",(req:Request,resp:Response)=>{
     let p:number=parseInt(req.query.page || 1);
     let size:number=parseInt(req.query.size || 5);
@@ -66,7 +66,7 @@ app.get("/find-paginate-resto",(req:Request,resp:Response)=>{
     });
 });
 
-//Requête HTTP GET http://localhost:8080/find-all-resto?size=10&page=2&name=Morri
+//Requête HTTP GET http://localhost:8080/find-resto-by-name?size=10&page=1&name=Morri
 app.get("/find-resto-by-name",(req:Request,resp:Response)=>{
     let p:number=parseInt(req.query.page || 1);
     let size:number=parseInt(req.query.size || 5);
@@ -104,6 +104,7 @@ MongoClient.connect(uri,(error,db)=>{
                 .then(arr => res.send(arr));
         });
 
+        //Requête HTTP http://localhost:8080/restau-cords?lat=5.293392199&long=-3.9777088
         app.get("/restau-cords",(req,res)=>{
 
            let latSup = parseFloat(req.query.lat) + 10 ;
@@ -124,7 +125,7 @@ MongoClient.connect(uri,(error,db)=>{
             // long:req.query.long})
 
         });
-
+//Requête HTTP http://localhost:8080/restaurants/5de779325273d39c239ecd43
         app.get("/restaurants/:id",(req,rep)=>{
             let id = req.params.id;
             console.log(id);
@@ -149,6 +150,8 @@ MongoClient.connect(uri,(error,db)=>{
                 rep.send(reponse);
             })
         });
+
+        //Requête HTTP POST http://localhost:8080/restaurants/
         app.post("/restaurants",(req,rep)=>{
             dbClient.insertOne(req.body,(error,data)=>{
                 if(!error){
@@ -169,6 +172,7 @@ MongoClient.connect(uri,(error,db)=>{
                 rep.send(reponse);
             })
         });
+        // Requête HTTP PUT http://localhost:8080/restaurants/5de779325273d39c239ecd43
         app.put("/restaurants/:id",(req,rep)=>{
             let id = req.params.id;
             console.log(id);

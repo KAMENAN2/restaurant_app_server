@@ -62,7 +62,7 @@ app.get("/find-all-resto", function (req, resp) {
         }
     });
 });
-//Requête HTTP GET http://localhost:8080/find-all-resto?size=10&page=2
+//Requête HTTP GET http://localhost:8080/find-paginate-resto?size=10&page=2
 app.get("/find-paginate-resto", function (req, resp) {
     var p = parseInt(req.query.page || 1);
     var size = parseInt(req.query.size || 5);
@@ -73,7 +73,7 @@ app.get("/find-paginate-resto", function (req, resp) {
             resp.send(result);
     });
 });
-//Requête HTTP GET http://localhost:8080/find-all-resto?size=10&page=2&name=Morri
+//Requête HTTP GET http://localhost:8080/find-resto-by-name?size=10&page=1&name=Morri
 app.get("/find-resto-by-name", function (req, resp) {
     var p = parseInt(req.query.page || 1);
     var size = parseInt(req.query.size || 5);
@@ -103,6 +103,7 @@ mongodb_1.default.connect(uri, function (error, db) {
                 .toArray()
                 .then(function (arr) { return res.send(arr); });
         });
+        //Requête HTTP http://localhost:8080/restau-cords?lat=5.293392199&long=-3.9777088
         app.get("/restau-cords", function (req, res) {
             var latSup = parseFloat(req.query.lat) + 10;
             var latInf = parseFloat(req.query.lat) - 10;
@@ -118,6 +119,7 @@ mongodb_1.default.connect(uri, function (error, db) {
             // lat:req.query.lat,
             // long:req.query.long})
         });
+        //Requête HTTP http://localhost:8080/restaurants/5de779325273d39c239ecd43
         app.get("/restaurants/:id", function (req, rep) {
             var id = req.params.id;
             console.log(id);
@@ -143,6 +145,7 @@ mongodb_1.default.connect(uri, function (error, db) {
                 rep.send(reponse);
             });
         });
+        //Requête HTTP POST http://localhost:8080/restaurants/
         app.post("/restaurants", function (req, rep) {
             dbClient_1.insertOne(req.body, function (error, data) {
                 if (!error) {
@@ -165,6 +168,7 @@ mongodb_1.default.connect(uri, function (error, db) {
                 rep.send(reponse);
             });
         });
+        // Requête HTTP PUT http://localhost:8080/restaurants/5de779325273d39c239ecd43
         app.put("/restaurants/:id", function (req, rep) {
             var id = req.params.id;
             console.log(id);
