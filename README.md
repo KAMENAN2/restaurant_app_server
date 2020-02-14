@@ -18,3 +18,5 @@
 6. Requête HTTP POST http://localhost:8080/restaurants/
 7. Requête HTTP PUT http://localhost:8080/restaurants/5de779325273d39c239ecd43
 8. Requête HTTP DELETE http://localhost:8080/restaurants/5de779325273d39c239ecd43
+<h2>Lien du repository GIT de l'app Front-End Angular 8</h2>
+1. https://github.com/KAMENAN2/restaurant_app_client
