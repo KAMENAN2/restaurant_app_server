@@ -14,9 +14,9 @@
 2. Requête HTTP GET http://localhost:8080/find-paginate-resto?size=10&page=2
 3. Requête HTTP GET http://localhost:8080/find-resto-by-name?size=10&page=1&name=Morri
 4. Requête HTTP GET http://localhost:8080/restau-cords?lat=5.293392199&long=-3.9777088
-5. Requête HTTP GET http://localhost:8080/restaurants/5de779325273d39c239ecd43
+5. Requête HTTP GET http://localhost:8080/restaurants/{id}
 6. Requête HTTP POST http://localhost:8080/restaurants/
-7. Requête HTTP PUT http://localhost:8080/restaurants/5de779325273d39c239ecd43
-8. Requête HTTP DELETE http://localhost:8080/restaurants/5de779325273d39c239ecd43
+7. Requête HTTP PUT http://localhost:8080/restaurants/{id}
+8. Requête HTTP DELETE http://localhost:8080/restaurants/{id}
 <h2>Lien du repository GIT de l'app Front-End Angular 8</h2>
 1. https://github.com/KAMENAN2/restaurant_app_client
