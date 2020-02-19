@@ -57,6 +57,7 @@ mongoose_1.default.connect(uri, function (err) {
         console.log("Mongo db connection sucess");
     }
 });
+
 //Requête HTTP GET http://localhost:8080/find-all-resto
 app.get("/find-all-resto", function (req, resp) {
     RestaurantSchema_1.default.find(function (err, books) {
@@ -68,6 +69,7 @@ app.get("/find-all-resto", function (req, resp) {
         }
     });
 });
+
 //Requête HTTP GET http://localhost:8080/find-paginate-resto?size=10&page=2
 app.get("/find-paginate-resto", function (req, resp) {
     var p = parseInt(req.query.page || 1);
@@ -224,6 +226,7 @@ mongodb_1.default.connect(uri, function (error, db) {
                 rep.send(reponse);
             });
         });
+
         //------------------------------------------------- MongoClient --------------------------------------------------
         //------------------------------- End CRUD Function for Esatic Server side node js project-----------------------------------------------------------
     }
