@@ -1,4 +1,4 @@
-﻿// les imports
+﻿// les imports des dependances necessaires
 import express , {Request, Response} from "express";
 import mongoose, {Schema, Types} from "mongoose";
 import serveStatic from "serve-static";
