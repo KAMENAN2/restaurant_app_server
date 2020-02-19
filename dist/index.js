@@ -175,6 +175,7 @@ mongodb_1.default.connect(uri, function (error, db) {
                 rep.send(reponse);
             });
         });
+
         // Requête HTTP PUT http://localhost:8080/restaurants/5de779325273d39c239ecd43
         app.put("/restaurants/:id", function (req, rep) {
             var id = req.params.id;
@@ -201,6 +202,8 @@ mongodb_1.default.connect(uri, function (error, db) {
                 rep.send(reponse);
             });
         });
+
+
         app.delete("/restaurants/:id", function (req, rep) {
             var id = req.params.id;
             console.log(id);
