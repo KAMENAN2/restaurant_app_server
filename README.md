@@ -1,11 +1,11 @@
 <h1>Readme for project restaurant SERVER</h1>
 <h2>Commande pour initialiser le projet</h2>
 
-1. Télécharger les dépendances du projet en exécutant la commande suivante:
-* npm install ou npm i
-2. Démarrer le serveur avec la commande suivante:
-* npm run dev ou npm run start
-* port = 8080
+1. Télécharger les dépendances du projet en exécutant la commande suivante: <br/>
+* npm install ou npm i <br/>
+2. Démarrer le serveur avec la commande suivante: <br/>
+* npm run dev ou npm run start <br/>
+* port = 8080 <br/>
 3. Test avec le lien: http://localhost:8080/<br/>
 
 <h2>Requête pour obtenir les resources REST</h2>
@@ -28,4 +28,4 @@ IV. Méthode DELETE (suppression des données)<br/>
 <br/>
 <h2>Lien du repository GIT de l'app Front-End Angular 8</h2>
 <br/>
-1. https://github.com/KAMENAN2/restaurant_app_client
+1. https://github.com/KAMENAN2/restaurant_app_client<br/>

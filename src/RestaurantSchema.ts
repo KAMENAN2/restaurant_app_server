@@ -11,6 +11,8 @@ let restaurantSchema=new mongoose.Schema({
     name:String,
     restaurant_id:String
 });
+
+// utilisation de la constante restaurantSchema
 restaurantSchema.plugin(mongoosePaginate);
 const Restaurants=mongoose.model("restaurant",restaurantSchema);
 export default Restaurants;
