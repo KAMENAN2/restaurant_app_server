@@ -45,6 +45,45 @@ app.options('*', cors())
 // let page = 1;
 
 //------------------------------- CRUD Function for Esatic Server side node js project-----------------------------------------------------------
+//---------------------------------------------------- mongoose --------------------------------------
+const uri:string="mongodb://localhost:27017/test";
+mongoose.connect(uri,(err)=>{
+    if(err){
+        console.log("Failed to mongodb connector with mongoose");
+
+        console.log(err); }
+    else{ console.log("Mongo db connection sucess"); }
+});
+//Requête HTTP GET http://localhost:8080/find-all-resto
+app.get("/find-all-resto",(req:Request,resp:Response)=>{
+    Restaurants.find((err,books)=>{
+        if(err){ resp.status(500).send(err); }
+        else{ resp.send(books); }
+    })
+});
+//Requête HTTP GET http://localhost:8080/find-paginate-resto?size=10&page=2
+app.get("/find-paginate-resto",(req:Request,resp:Response)=>{
+    let p:number=parseInt(req.query.page || 1);
+    let size:number=parseInt(req.query.size || 5);
+    Restaurants.paginate({}, { page: p, limit: size }, function(err, result) {
+        if(err) resp.status(500).send(err);
+        else resp.send(result);
+    });
+});
+
+//Requête HTTP GET http://localhost:8080/find-resto-by-name?size=10&page=1&name=Morri
+app.get("/find-resto-by-name",(req:Request,resp:Response)=>{
+    let p:number=parseInt(req.query.page || 1);
+    let size:number=parseInt(req.query.size || 5);
+    let keyword:string=req.query.name || '';
+    Restaurants.paginate({name:{$regex:".*(?i)"+keyword+".*"}}, { page: p, limit:
+        size }, function(err, result) {
+        if(err) resp.status(500).send(err);
+        else resp.send(result);
+    });
+});
+
+//---------------------------End mongoose --------------------------------------
 
 //--------------------------- MongoClient --------------------------------------
 
